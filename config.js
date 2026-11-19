@@ -1,18 +1,25 @@
 /* ===== EDIT YOUR DETAILS HERE ===== */
 const CFG = {
   tagline: "Everything you need, in one cart",
-  wa: "919999999999",            // WhatsApp number with country code, no +
+  wa: "919076568175",            // WhatsApp number with country code, no +
   cc: "91",                      // country code (used for customer call/WhatsApp links)
   adminEmail: "admin@nanucart.com", // admin login email (create the same user in Firebase)
-  insta: "https://instagram.com/",
-  fb: "https://facebook.com/",
+  insta: "https://www.instagram.com/nanucart",
+  fb: "https://www.facebook.com/share/1FWxfdb1QQ/",
   img: {
     hero: "",                    // optional big banner image link on Home
     logo: "https://i.ibb.co/pBYqTsyS/nanucart-icon.png",
     logoFull: "https://i.ibb.co/5VRq3Kv/nanucart-logo.png"
   },
   /* Paste your Firebase web app config here (see setup steps) */
-  firebase: { apiKey: "PASTE_API_KEY", authDomain: "", projectId: "", appId: "" },
+  firebase: {
+    apiKey: "AIzaSyAw4sKt2YJzVJ5DjRXqp8on8gMWOCCOyEg",
+    authDomain: "nanu-cart.firebaseapp.com",
+    projectId: "nanu-cart",
+    storageBucket: "nanu-cart.firebasestorage.app",
+    messagingSenderId: "822343085679",
+    appId: "1:822343085679:web:dd614a5ae95d87fdf1279a"
+  },
 
   /* Sample products. Once you add real products in the admin panel, these are replaced automatically. */
   products: [
