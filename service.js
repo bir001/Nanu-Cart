@@ -1,0 +1,8 @@
+/* SERVICES page + booking */
+const svcCard=s=>`<div class="card sc"><div class="si">${pic(s.img,s.name)}</div><div class="pb"><h4>${s.name}</h4><p>${s.desc}</p><div class="pr"><b>${rs(s.price)}<small> se shuru</small></b><button class="btn b sm" onclick="bookSheet('${s.id}')">Book karo</button></div></div></div>`;
+const services=()=>`<div class="sh"><h2>Services</h2></div><div class="list">${CFG.services.map(svcCard).join('')}</div>`;
+function bookSheet(id){const s=findS(id),u=ls.get('user',{});sheet(`<h3>${s.name}</h3><p class="mut">Details bharo, request WhatsApp par jayegi.</p><input id="bn" placeholder="Naam" value="${u.name||''}"><input id="bp" placeholder="Phone" inputmode="tel" value="${u.phone||''}"><input id="bd" type="date"><textarea id="ba" rows="2" placeholder="Pata">${u.addr||''}</textarea><textarea id="bt" rows="2" placeholder="Kuch aur batana ho (optional)"></textarea><button class="btn b w" onclick="sendBooking('${id}')">WhatsApp par book karo</button>`)}
+function sendBooking(id){const s=findS(id),n=$('#bn').value.trim(),p=$('#bp').value.trim(),d=$('#bd').value,a=$('#ba').value.trim(),t=$('#bt').value.trim();if(!n||!p||!a)return toast('Naam, phone aur pata bharo');
+const oid=newId('SV');saveOrder({id:oid,type:'Service',date:new Date().toLocaleDateString('en-IN'),items:s.name+(d?' ('+d+')':''),total:s.price,status:'Request bheji gayi'});
+ls.set('user',{...ls.get('user',{}),name:n,phone:p,addr:a});
+wa(`*Service Booking ${oid}*\nService: ${s.name}\nTarikh: ${d||'jaldi se jaldi'}\nNaam: ${n}\nPhone: ${p}\nPata: ${a}${t?'\nNote: '+t:''}`);closeAll();location.hash='#orders'}
