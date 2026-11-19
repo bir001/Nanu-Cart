@@ -1,18 +1,21 @@
-/* PRODUCTS, SEARCH, CART, WISHLIST pages */
-const card=p=>{const w=getWish().includes(p.id),off=p.mrp>p.price;return `<div class="card pc"><div class="pi">${pic(p.img,p.name)}<button class="hb ${w?'on':''}" onclick="toggleWish('${p.id}')" aria-label="Wishlist">${I('heart',18)}</button>${off?`<span class="tag">${Math.round(100-p.price/p.mrp*100)}% off</span>`:''}</div><div class="pb"><small>${p.cat}</small><h4>${p.name}</h4><div class="pr"><div><b>${rs(p.price)}</b>${off?`<s>${rs(p.mrp)}</s>`:''}</div><button class="add" onclick="addCart('${p.id}')" aria-label="Cart me daalo">${I('plus',18)}</button></div></div></div>`};
-let catSel='Sab';
+/* PRODUCT CARD, PRODUCTS, SEARCH, WISHLIST, CART, CHECKOUT */
+const disc=p=>p.mrp>p.price?Math.round(100-p.price/p.mrp*100):0;
+const img0=p=>(p.imgs&&p.imgs[0])||p.img||'';
+const card=p=>{const w=getWish().includes(p.id),d=disc(p),o=p.stock===false;return `<article class="card pc" onclick="go('product/${p.id}')"><div class="pi">${pic(img0(p),p.name)}${d?`<span class="tag">${d}% OFF</span>`:''}<button class="hb ${w?'on':''}" onclick="event.stopPropagation();toggleWish('${p.id}')" aria-label="Wishlist">${I('heart',18)}</button>${o?'<div class="oos">Out of stock</div>':''}</div><div class="pb"><small>${esc(p.cat)}</small><h4>${esc(p.name)}</h4><div class="pr"><div class="pp"><b>${rs(p.price)}</b>${d?`<s>${rs(p.mrp)}</s>`:''}</div><button class="add" ${o?'disabled':''} onclick="event.stopPropagation();addCart('${p.id}')" aria-label="Add to cart">${I('plus',18)}</button></div></div></article>`};
+let catSel='All';
 const setCat=c=>{catSel=c;refresh()};
-const products=()=>{const cats=['Sab',...new Set(CFG.products.map(p=>p.cat))];return `<div class="sh"><h2>Products</h2></div><div class="chips">${cats.map(c=>`<button class="${c===catSel?'on':''}" onclick="setCat('${c}')">${c}</button>`).join('')}</div><div class="grid">${CFG.products.filter(p=>catSel==='Sab'||p.cat===catSel).map(card).join('')}</div>`};
-const search=()=>`<div class="sh"><h2>Search</h2></div><input id="q" placeholder="Product ya service dhundho" oninput="doSearch(this.value)" autofocus><div id="sr" class="grid" style="margin-top:16px"></div>`;
-function doSearch(v){v=v.trim().toLowerCase();const r=$('#sr');if(!v){r.innerHTML='';return}const ps=CFG.products.filter(p=>(p.name+p.cat).toLowerCase().includes(v)),ss=CFG.services.filter(s=>s.name.toLowerCase().includes(v));r.innerHTML=ps.map(card).join('')+ss.map(svcCard).join('')||'<p class="empty">Kuch nahi mila. Doosra naam try karo.</p>'}
-const wishlist=()=>{const l=getWish().map(findP).filter(Boolean);return `<div class="sh"><h2>Wishlist</h2></div>${l.length?`<div class="grid">${l.map(card).join('')}</div>`:'<p class="empty">Abhi kuch save nahi hai. Product par dil dabao.</p>'}`};
-const cart=()=>{const items=Object.entries(getCart()).map(([id,q])=>({p:findP(id),q})).filter(x=>x.p),u=ls.get('user',{});
-if(!items.length)return `<div class="sh"><h2>Cart</h2></div><p class="empty">Cart khaali hai.</p><a class="btn b" href="#products">Products dekho</a>`;
-return `<div class="sh"><h2>Cart</h2></div>${items.map(({p,q})=>`<div class="card li"><div class="th">${pic(p.img,p.name)}</div><div class="fl"><h4>${p.name}</h4><b>${rs(p.price)}</b></div><div class="qty"><button onclick="setQty('${p.id}',-1)">${I('minus',16)}</button><span>${q}</span><button onclick="setQty('${p.id}',1)">${I('plus',16)}</button></div></div>`).join('')}
-<div class="card form"><h3>Delivery details</h3><input id="cn" placeholder="Naam" value="${u.name||''}"><input id="cp" placeholder="Phone" inputmode="tel" value="${u.phone||''}"><textarea id="ca" rows="2" placeholder="Poora pata">${u.addr||''}</textarea><div class="tot"><span>Total</span><b>${rs(cartTotal())}</b></div><button class="btn b w" onclick="placeOrder()">WhatsApp par order bhejo</button></div>`};
-function placeOrder(){const n=$('#cn').value.trim(),p=$('#cp').value.trim(),a=$('#ca').value.trim();if(!n||!p||!a)return toast('Naam, phone aur pata bharo');
-const items=Object.entries(getCart()).map(([id,q])=>({n:findP(id).name,q,pr:findP(id).price})),id=newId('NC'),total=cartTotal();
-saveOrder({id,type:'Product',date:new Date().toLocaleDateString('en-IN'),items:items.map(i=>`${i.n} x${i.q}`).join(', '),total,status:'Order bheja gaya'});
-ls.set('user',{...ls.get('user',{}),name:n,phone:p,addr:a});
-wa(`*Naya Order ${id}*\n${items.map(i=>`• ${i.n} x${i.q} = ${rs(i.pr*i.q)}`).join('\n')}\n*Total: ${rs(total)}*\n\nNaam: ${n}\nPhone: ${p}\nPata: ${a}`);
-ls.set('cart',{});location.hash='#orders'}
+const products=()=>{const cats=['All',...new Set(PRODUCTS.map(p=>p.cat))];return `<div class="sh"><h2>Products</h2></div><div class="chips">${cats.map(c=>`<button class="${c===catSel?'on':''}" onclick="setCat(this.dataset.c)" data-c="${esc(c)}">${esc(c)}</button>`).join('')}</div><div class="grid">${PRODUCTS.filter(p=>catSel==='All'||p.cat===catSel).map(card).join('')}</div>`};
+const search=()=>`<div class="sh"><h2>Search</h2></div><input id="q" placeholder="Search products and services" oninput="doSearch(this.value)" autofocus><div id="sr" class="grid" style="margin-top:16px"></div>`;
+function doSearch(v){v=v.trim().toLowerCase();const r=$('#sr');if(!v){r.innerHTML='';return}const a=PRODUCTS.filter(p=>(p.name+p.cat).toLowerCase().includes(v)).map(card).join(''),b=CFG.services.filter(s=>s.name.toLowerCase().includes(v)).map(svcCard).join('');r.innerHTML=a+b||'<p class="empty">No results found.</p>'}
+const wishlist=()=>{const l=getWish().map(findP).filter(Boolean);return `<div class="sh"><h2>Wishlist</h2></div>${l.length?`<div class="grid">${l.map(card).join('')}</div>`:'<p class="empty">Your wishlist is empty.</p>'}`};
+const cart=()=>{const items=Object.entries(getCart()).map(([id,q])=>({p:findP(id),q})).filter(x=>x.p);
+if(!items.length)return `<div class="sh"><h2>Cart</h2></div><p class="empty">Your cart is empty.</p><a class="btn b" href="#products">Browse products</a>`;
+return `<div class="sh"><h2>Cart</h2></div>${items.map(({p,q})=>`<div class="card li"><div class="th">${pic(img0(p),p.name)}</div><div class="fl"><h4>${esc(p.name)}</h4><b>${rs(p.price)}</b></div><div class="qty"><button onclick="setQty('${p.id}',-1)">${I('minus',16)}</button><span>${q}</span><button onclick="setQty('${p.id}',1)">${I('plus',16)}</button></div></div>`).join('')}
+<div class="card form"><h3>Delivery address</h3><textarea id="ca" rows="3" placeholder="Full address with pincode"></textarea><div class="tot"><span>Total</span><b>${rs(cartTotal())}</b></div><button class="btn b w" onclick="placeOrder()">Place order</button></div>`};
+async function placeOrder(){
+  if(!requireLogin('#cart'))return;
+  const a=$('#ca').value.trim();if(!a)return toast('Please enter your delivery address');
+  const items=Object.entries(getCart()).map(([id,q])=>({name:findP(id).name,qty:q,price:findP(id).price})),id=newId('NC');
+  try{await BE.db.collection('orders').doc(id).set({id,type:'Product',phone:ME.phone,name:ME.name,address:a,items,total:cartTotal(),status:'Placed',createdAt:ts()});
+    BE.db.doc('users/'+ME.phone).set({addr:a},{merge:true});ls.set('cart',{});toast('Order placed successfully');go('orders')}catch(e){toast('Could not place order. Please try again.')}
+}

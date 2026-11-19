@@ -1,0 +1,5 @@
+/* USER CHAT with Nanu Cart (inside the website) */
+const chat=()=>`<div class="sh"><h2>Chat with us</h2></div><div class="chatbox"><div id="msgs" class="msgs"><p class="empty">Loading…</p></div><div class="cin"><input id="cm" placeholder="Type your message" onkeydown="if(event.key==='Enter')sendMsg()"><button class="send" onclick="sendMsg()" aria-label="Send">${I('send',20)}</button></div></div>`;
+function chatInit(){listen(BE.db.collection('chats/'+ME.phone+'/messages').orderBy('ts').onSnapshot(s=>{const m=$('#msgs');m.innerHTML=s.docs.map(d=>{const x=d.data();return `<div class="bub ${x.from==='user'?'me':'ad'}">${esc(x.text)}<small>${fmt(x.ts)}</small></div>`}).join('')||'<p class="empty">Send us a message. We will reply here.</p>';m.scrollTop=m.scrollHeight}))}
+async function sendMsg(){const i=$('#cm'),t=i.value.trim();if(!t)return;i.value='';
+  try{await BE.db.collection('chats/'+ME.phone+'/messages').add({text:t,from:'user',ts:ts()});await BE.db.doc('chats/'+ME.phone).set({phone:ME.phone,name:ME.name,last:t,lastTs:ts(),unread:true},{merge:true})}catch(e){toast('Message failed. Try again.')}}

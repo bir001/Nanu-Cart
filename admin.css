@@ -1,0 +1,13 @@
+.adm{padding-bottom:40px}.adm .top{display:flex;align-items:center;gap:12px;padding:14px 16px;position:sticky;top:0;z-index:20;background:rgba(243,246,253,.9);backdrop-filter:blur(12px)}.adm .top h1{font-size:20px}
+.adm #view{padding:6px 16px;max-width:980px}.adm #drawer{background:#fff;border-right:1px solid var(--ln)}.adm #drawer a{background:transparent;margin-bottom:4px}.adm #drawer a.on{background:#E8EEFC;color:var(--b2)}
+.adm .abrand{display:flex;align-items:center;gap:10px;font:800 19px Sora;padding:6px 4px 14px}.adm .abrand img{width:34px;height:34px;border-radius:10px}
+.adm .alogout{margin-top:18px;color:#D23B3B}
+.adm .row2{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.adm .acard{padding:16px;margin-bottom:12px}.adm .acard h4{font-size:15px}.adm .acard p{font-size:13px;color:var(--mut);margin:2px 0}
+.adm select{padding:10px 12px;border-radius:12px;border:1.5px solid var(--ln);font:600 13px 'Plus Jakarta Sans';background:#fff;color:var(--ink)}
+.adm .acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.adm .acts a,.adm .acts button{padding:8px 14px;border-radius:999px;background:#E8EEFC;color:var(--b2);font-weight:700;font-size:13px}.adm .acts .dng{background:#FDE8E8;color:#D23B3B}
+.adm .prow{display:flex;gap:12px;align-items:center;padding:12px;margin-bottom:10px}.adm .prow .th{width:60px;height:60px}.adm .pill{font-size:11px;font-weight:700;padding:3px 9px;border-radius:999px;background:#E3F8EA;color:#13803D}.adm .pill.no{background:#FDE8E8;color:#D23B3B}
+.adm .crow{display:flex;align-items:center;gap:12px;padding:12px 14px;background:#fff;border-radius:18px;margin-bottom:8px;box-shadow:var(--sh)}.adm .crow p{font-size:13px;color:var(--mut);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:60vw}.dot{width:10px;height:10px;border-radius:50%;background:var(--b)}
+.adm .chead{display:flex;align-items:center;gap:12px;margin-bottom:12px}.adm .chead button{width:40px;height:40px;border-radius:50%;background:#fff;display:grid;place-items:center}.adm .chatbox{height:calc(100vh - 190px)}
+.adm .pvs{display:flex;gap:8px;overflow-x:auto;margin-bottom:12px}.adm .pvs img{width:64px;height:64px;object-fit:cover;border-radius:12px}.adm .note{background:#FFF7DB;border-radius:16px;padding:14px;font-size:13px;margin-bottom:14px;line-height:1.6}
+.adm .chips{margin-left:0;margin-right:0;padding:0}
+@media(min-width:900px){.adm #drawer{transform:none;width:270px}.adm .top,.adm #view{margin-left:270px}.adm .mm{display:none}.adm .dh button{display:none}.adm #ov{display:none}}
