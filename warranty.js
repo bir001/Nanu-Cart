@@ -1,0 +1,5 @@
+/* WARRANTY CLAIM (saved as an order of type "Warranty Claim") */
+const warranty=()=>`<div class="sh"><h2>Warranty Claim</h2></div><div class="card form"><p class="mut" style="margin-top:0">Tell us about the issue. Our team will review your claim and contact you.</p><input id="wp" placeholder="Product name"><input id="wo" placeholder="Order ID (optional)"><textarea id="wi" rows="4" placeholder="Describe the issue"></textarea><button class="btn b w" onclick="sendClaim()">Submit claim</button></div>`;
+async function sendClaim(){if(!requireLogin('#warranty'))return;
+  const p=$('#wp').value.trim(),o=$('#wo').value.trim(),d=$('#wi').value.trim();if(!p||!d)return toast('Enter the product name and describe the issue');
+  try{const id=newId('WC');await BE.db.collection('orders').doc(id).set({id,type:'Warranty Claim',phone:ME.phone,name:ME.name,address:'-',note:d+(o?' (Order ID: '+o+')':''),items:[{name:p,qty:1,price:0}],total:0,status:'Placed',createdAt:ts()});toast('Claim submitted');go('orders')}catch(e){toast('Could not submit. Please try again.')}}
