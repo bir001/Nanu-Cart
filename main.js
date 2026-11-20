@@ -1,5 +1,5 @@
 /* ROUTER, NAV, DRAWER, BADGES */
-const pages={home,services,products,search,cart,wishlist,orders,track,account,chat,login,product};
+const pages={home,services,products,search,cart,wishlist,orders,track,account,chat,login,product,warranty,info};
 const guarded=['orders','track','account','chat'],inits={orders:ordersInit,chat:chatInit};
 const nav=[['home','Home','home'],['products','Products','grid'],['search','','search'],['services','Services','tool'],['account','Account','user']];
 let AUTH_READY=!BE.ready,UN=[],CURR='home';
@@ -8,14 +8,14 @@ $('#mb').innerHTML=I('menu');$('#wb').innerHTML=I('heart');$('#cb').innerHTML=I(
 $('.logo img').src=CFG.img.logo;
 $('#nav').innerHTML=nav.map(([h,t,i])=>`<a href="#${h}" data-h="${h}" class="${h==='search'?'fab':''}" aria-label="${t||'Search'}">${I(i,h==='search'?24:22)}<span>${t}</span></a>`).join('');
 function buildDrawer(){const dl=[['Shop',[['home','Home','#home'],['grid','Products','#products'],['tool','Services','#services'],['heart','Wishlist','#wishlist'],['bag','Cart','#cart']]],['Orders',[['box','My Orders','#orders'],['pin','Track Order','#track']]],['Support',[['chat','Chat with us','#chat']]]];
-  $('#drawer').innerHTML=`<div class="dh"><a class="logo" href="#home" onclick="closeAll()">nanu<span>cart</span></a><button class="ib" onclick="closeAll()" aria-label="Close">${I('x')}</button></div>
+  $('#drawer').innerHTML=`<div class="dh"><a class="logo" href="#home" onclick="closeAll()"><i class="wm">nanu<span>cart</span></i></a><button class="ib" onclick="closeAll()" aria-label="Close">${I('x')}</button></div>
   ${ME?`<a class="dme" href="#account" onclick="closeAll()"><div class="av">${esc((ME.name||'U')[0].toUpperCase())}</div><div><b>${esc(ME.name||'My account')}</b><small>+${CFG.cc} ${esc(ME.phone)}</small></div></a>`:`<a class="dme" href="#login" onclick="closeAll()">${I('user',20)}<b>Login / Sign up</b></a>`}
   ${dl.map(([g,l])=>`<h5>${g}</h5>${l.map(([i,t,h])=>`<a href="${h}" onclick="closeAll()">${I(i,20)}${t}</a>`).join('')}`).join('')}<h5>Account</h5>${ME?`<a href="#account" onclick="closeAll()">${I('user',20)}My Account</a><a onclick="closeAll();logout()">${I('logout',20)}Logout</a>`:''}<a onclick="closeAll();wa('Hello Nanu Cart, I need help')">${I('phone',20)}WhatsApp support</a>`}
 function badges(){const c=Object.values(getCart()).reduce((a,b)=>a+b,0),w=getWish().length;[['#cb',c],['#wb',w]].forEach(([s,n])=>{const e=$(s);e.querySelector('.bd')?.remove();if(n)e.insertAdjacentHTML('beforeend',`<i class="bd">${n}</i>`)})}
-function render(){UN.forEach(f=>f());UN=[];const[k0,arg]=(location.hash||'#home').slice(1).split('/'),k=pages[k0]?k0:'home';
+function render(){UN.forEach(f=>f());UN=[];const[k0,arg]=(location.hash||'#home').slice(1).split('/'),k=pages[k0]?k0:'home';buildFooter(k);
   if(guarded.includes(k)){if(!AUTH_READY){$('#app').innerHTML='<p class="empty">Loading…</p>';return k}if(!ME){NEXT='#'+k;location.hash='#login';return k}}
   if(k==='login'&&ME){location.hash='#account';return k}
-  if(!BE.ready&&['login'].concat(guarded).includes(k)){$('#app').innerHTML='<div class="card auth"><h3>Store is not connected yet</h3><p class="mut">Please add your Firebase details in config.js.</p></div>';return k}
+  if(!BE.ready&&['login'].concat(guarded).includes(k)){$('#app').innerHTML=`<div class="card auth"><h3>Store is not connected yet</h3><p class="mut">${esc(BE.why)}</p></div>`;return k}
   $('#app').innerHTML=pages[k](arg);CURR=k;document.body.classList.toggle('pdp',k==='product');
   document.querySelectorAll('#nav a').forEach(a=>a.classList.toggle('on',a.dataset.h===k||(k==='product'&&a.dataset.h==='products')));
   inits[k]&&inits[k]();badges();buildDrawer();closeAll();return k}

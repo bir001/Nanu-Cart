@@ -10,6 +10,4 @@ const home=()=>`
 <div class="sh"><h2>Popular products</h2><a href="#products">View all</a></div>
 <div class="grid">${PRODUCTS.slice(0,4).map(card).join('')}</div>
 <div class="sh"><h2>Our services</h2><a href="#services">View all</a></div>
-<div class="rail">${CFG.services.map(svcCard).join('')}</div>
-<section class="why"><h3>How it works</h3><ol><li>Choose a product or service</li><li>Place your order or booking</li><li>Track it live and chat with us anytime</li></ol></section>
-<footer>${CFG.img.logoFull?`<img class="fl-logo" src="${esc(CFG.img.logoFull)}" alt="Nanu Cart">`:'<b>nanu<span>cart</span></b>'}<div><a href="${esc(CFG.insta)}" target="_blank" rel="noopener">Instagram</a><a href="${esc(CFG.fb)}" target="_blank" rel="noopener">Facebook</a><a onclick="wa('Hello Nanu Cart')">WhatsApp</a></div></footer>`;
+<div class="rail">${CFG.services.map(svcCard).join('')}</div>`;
