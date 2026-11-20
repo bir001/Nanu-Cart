@@ -11,6 +11,14 @@ const CFG = {
     logo: "https://i.ibb.co/pBYqTsyS/nanucart-icon.png",
     logoFull: "https://i.ibb.co/5VRq3Kv/nanucart-logo.png"
   },
+  deliveryFee: 0,                // delivery charge in rupees. 0 = Free delivery
+  freeShipAbove: 0,              // free delivery above this order value (only used when deliveryFee > 0)
+  /* Home page slider. Add or remove slides. img is optional (image link). */
+  offers: [
+    {k:"New on Nanu Cart", t:"Shop smart. Track every step.", s:"Order products and book services in one place.", c:"Shop now", h:"#products", img:""},
+    {k:"Services", t:"Book a service in a few taps", s:"Pick a service, share your details and we will confirm.", c:"Book a service", h:"#services", img:""},
+    {k:"Need help?", t:"Chat with our team anytime", s:"Ask about orders, products or warranty.", c:"Start chat", h:"#chat", img:""}
+  ],
   /* Paste your Firebase web app config here (see setup steps) */
   firebase: {
     apiKey: "AIzaSyAw4sKt2YJzVJ5DjRXqp8on8gMWOCCOyEg",

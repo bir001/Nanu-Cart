@@ -10,6 +10,6 @@ const ts=()=>firebase.firestore.FieldValue.serverTimestamp();
 if(BE.ready){
   BE.db.collection('products').onSnapshot(s=>{const l=s.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.active!==false);if(l.length)PRODUCTS=l;typeof softRefresh==='function'&&softRefresh()},e=>console.error(e));
   BE.auth.onAuthStateChanged(async u=>{ME=null;
-    if(u&&u.email&&u.email.endsWith('@nanucart.user')){const p=u.email.split('@')[0];let n='';try{n=((await BE.db.doc('users/'+p).get()).data()||{}).name||''}catch(e){}ME={phone:p,name:n}}
+    if(u&&u.email&&u.email.endsWith('@nanucart.user')){const p=u.email.split('@')[0];let n='',a=null;try{const d=(await BE.db.doc('users/'+p).get()).data()||{};n=d.name||'';a=d.addr&&typeof d.addr==='object'?d.addr:null}catch(e){}ME={phone:p,name:n,addr:a}}
     typeof authChanged==='function'&&authChanged()});
 }

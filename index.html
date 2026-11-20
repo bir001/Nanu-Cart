@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Nanu Cart | Products & Services</title>
 <meta name="description" content="Nanu Cart: order products and book services online.">
-<meta name="theme-color" content="#2A74F0">
+<meta name="theme-color" content="#EEF3FF">
+<script>try{document.documentElement.dataset.theme=JSON.parse(localStorage.getItem("nc_theme")||'"royal"')}catch(e){}</script>
 <link rel="icon" href="https://i.ibb.co/pBYqTsyS/nanucart-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 <header>
@@ -20,6 +21,7 @@
 </header>
 <main id="app"></main>
 <footer id="foot"></footer>
+<div id="cbar"></div>
 <nav id="nav"></nav>
 <div class="ov" id="ov" onclick="closeAll()"></div>
 <aside id="drawer"></aside>
@@ -28,20 +30,23 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="config.js?v=4"></script>
-<script src="core.js?v=4"></script>
-<script src="backend.js?v=4"></script>
-<script src="auth.js?v=4"></script>
-<script src="cart.js?v=4"></script>
-<script src="home.js?v=4"></script>
-<script src="shop.js?v=4"></script>
-<script src="product.js?v=4"></script>
-<script src="service.js?v=4"></script>
-<script src="account.js?v=4"></script>
-<script src="chat.js?v=4"></script>
-<script src="warranty.js?v=4"></script>
-<script src="info.js?v=4"></script>
-<script src="footer.js?v=4"></script>
-<script src="main.js?v=4"></script>
+<script src="config.js?v=5"></script>
+<script src="core.js?v=5"></script>
+<script src="theme.js?v=5"></script>
+<script src="backend.js?v=5"></script>
+<script src="auth.js?v=5"></script>
+<script src="cart.js?v=5"></script>
+<script src="reviews.js?v=5"></script>
+<script src="home.js?v=5"></script>
+<script src="shop.js?v=5"></script>
+<script src="checkout.js?v=5"></script>
+<script src="product.js?v=5"></script>
+<script src="service.js?v=5"></script>
+<script src="account.js?v=5"></script>
+<script src="chat.js?v=5"></script>
+<script src="warranty.js?v=5"></script>
+<script src="info.js?v=5"></script>
+<script src="footer.js?v=5"></script>
+<script src="main.js?v=5"></script>
 </body>
 </html>

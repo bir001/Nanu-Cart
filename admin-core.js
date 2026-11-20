@@ -1,6 +1,6 @@
 /* ADMIN CORE: login, sidebar, view switching */
 const V={};let AUN=[],CUR='orders';
-const ANAV=[['orders','box','Orders'],['products','grid','Products'],['addp','plus','Add Product'],['customers','users','Customers (Leads)'],['chats','chat','Chats'],['resets','lock','Password Requests']];
+const ANAV=[['orders','box','Orders'],['products','grid','Products'],['addp','plus','Add Product'],['customers','users','Customers (Leads)'],['chats','chat','Chats'],['reviews','heart','Reviews'],['resets','lock','Password Requests']];
 const TTL=Object.fromEntries(ANAV.map(a=>[a[0],a[2]]));
 function openView(k){AUN.forEach(f=>f());AUN=[];CUR=k;$('#ttl').textContent=TTL[k]||'';$('#view').innerHTML='';V[k]($('#view'));
   document.querySelectorAll('#drawer a[data-k]').forEach(a=>a.classList.toggle('on',a.dataset.k===k));closeAll()}
