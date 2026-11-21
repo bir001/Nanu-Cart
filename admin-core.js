@@ -3,7 +3,7 @@ const V={};let AUN=[],CUR='orders';
 function banner(e){const b=$('#banner');if(!e){b.innerHTML='';return}const u=BE.auth.currentUser;
   b.innerHTML=e.code==='permission-denied'?`<div class="note bad"><b>Data is blocked by Firestore rules.</b><br>1. Firebase Console, then Firestore Database, then Rules.<br>2. Paste the full text of firebase-rules.txt and press Publish.<br>3. In the rules, the admin email must be exactly: <b>${esc(u&&u.email)}</b><br>Then refresh this page.</div>`:`<div class="note bad"><b>Could not load data:</b> ${esc(e.code||e.message)}</div>`}
 if(window.firebase&&firebase.firestore&&firebase.firestore.Query){const _os=firebase.firestore.Query.prototype.onSnapshot;firebase.firestore.Query.prototype.onSnapshot=function(...a){if(typeof a[0]==='function'&&typeof a[1]!=='function')a.splice(1,0,banner);return _os.apply(this,a)}}
-const ANAV=[['orders','box','Orders'],['products','grid','Products'],['addp','plus','Add Product'],['customers','users','Customers (Leads)'],['chats','chat','Chats'],['reviews','heart','Reviews'],['resets','lock','Password Requests']];
+const ANAV=[['orders','box','Orders'],['upi','bag','UPI Payments'],['products','grid','Products'],['addp','plus','Add Product'],['customers','users','Customers (Leads)'],['chats','chat','Chats'],['reviews','heart','Reviews'],['paysettings','lock','Payment Settings'],['resets','lock','Password Requests']];
 const TTL=Object.fromEntries(ANAV.map(a=>[a[0],a[2]]));
 function openView(k){AUN.forEach(f=>f());AUN=[];CUR=k;$('#ttl').textContent=TTL[k]||'';$('#view').innerHTML='';V[k]($('#view'));
   document.querySelectorAll('#drawer a[data-k]').forEach(a=>a.classList.toggle('on',a.dataset.k===k));closeAll()}

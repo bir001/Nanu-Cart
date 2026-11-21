@@ -7,13 +7,20 @@
 <meta name="description" content="Nanu Cart: order products and book services online.">
 <meta name="theme-color" content="#EEF3FF">
 <script>try{document.documentElement.dataset.theme=JSON.parse(localStorage.getItem("nc_theme")||'"royal"')}catch(e){}</script>
-<link rel="icon" href="https://i.ibb.co/pBYqTsyS/nanucart-icon.png">
+<link rel="icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Nanu Cart">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=5">
+<style>#splash{position:fixed;inset:0;z-index:200;background:radial-gradient(600px 420px at 50% 32%,#1F5BFF66,transparent),linear-gradient(160deg,#04103F,#0B3BD6);display:grid;place-items:center;transition:opacity .5s,visibility .5s}#splash.out{opacity:0;visibility:hidden}.sp-in{text-align:center;color:#fff;font-family:Sora,system-ui,sans-serif}.sp-ring{width:104px;height:104px;margin:0 auto 20px;position:relative;display:grid;place-items:center}.sp-ring:before,.sp-ring:after{content:"";position:absolute;inset:0;border-radius:32px;border:2px solid rgba(255,255,255,.55);animation:spr 1.8s ease-out infinite}.sp-ring:after{animation-delay:.9s}.sp-ring img{width:84px;height:84px;border-radius:24px;animation:spf 1.6s ease-in-out infinite;box-shadow:0 16px 40px rgba(0,0,0,.35)}.sp-name{font-weight:800;font-size:27px;letter-spacing:-.03em}.sp-name span{color:#FFC21A}.sp-bar{width:120px;height:4px;border-radius:2px;background:rgba(255,255,255,.2);margin:22px auto 0;overflow:hidden}.sp-bar i{display:block;height:100%;width:40%;border-radius:2px;background:#FFC21A;animation:spb 1.2s ease-in-out infinite}@keyframes spr{0%{transform:scale(.8);opacity:.9}100%{transform:scale(1.55);opacity:0}}@keyframes spf{50%{transform:translateY(-6px)}}@keyframes spb{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}</style>
+<link rel="stylesheet" href="style.css?v=7">
 </head>
 <body>
+<div id="splash"><div class="sp-in"><div class="sp-ring"><img src="icon-192.png" alt=""></div><div class="sp-name">nanu<span>cart</span></div><div class="sp-bar"><i></i></div></div></div>
 <header>
   <button class="ib" onclick="openDrawer()" aria-label="Menu" id="mb"></button>
   <a class="logo" href="#home"><img src="https://i.ibb.co/pBYqTsyS/nanucart-icon.png" alt=""><i class="wm">nanu<span>cart</span></i></a>
@@ -30,23 +37,26 @@
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
-<script src="config.js?v=5"></script>
-<script src="core.js?v=5"></script>
-<script src="theme.js?v=5"></script>
-<script src="backend.js?v=5"></script>
-<script src="auth.js?v=5"></script>
-<script src="cart.js?v=5"></script>
-<script src="reviews.js?v=5"></script>
-<script src="home.js?v=5"></script>
-<script src="shop.js?v=5"></script>
-<script src="checkout.js?v=5"></script>
-<script src="product.js?v=5"></script>
-<script src="service.js?v=5"></script>
-<script src="account.js?v=5"></script>
-<script src="chat.js?v=5"></script>
-<script src="warranty.js?v=5"></script>
-<script src="info.js?v=5"></script>
-<script src="footer.js?v=5"></script>
-<script src="main.js?v=5"></script>
+<script src="config.js?v=7"></script>
+<script src="core.js?v=7"></script>
+<script src="theme.js?v=7"></script>
+<script src="backend.js?v=7"></script>
+<script src="auth.js?v=7"></script>
+<script src="cart.js?v=7"></script>
+<script src="reviews.js?v=7"></script>
+<script src="home.js?v=7"></script>
+<script src="shop.js?v=7"></script>
+<script src="checkout.js?v=7"></script>
+<script src="product.js?v=7"></script>
+<script src="service.js?v=7"></script>
+<script src="account.js?v=7"></script>
+<script src="chat.js?v=7"></script>
+<script src="warranty.js?v=7"></script>
+<script src="info.js?v=7"></script>
+<script src="footer.js?v=7"></script>
+<script src="sfx.js?v=7"></script>
+<script src="pay.js?v=7"></script>
+<script src="pwa.js?v=7"></script>
+<script src="main.js?v=7"></script>
 </body>
 </html>

@@ -1,0 +1,3 @@
+/* SOUND: success chime (made with Web Audio, no audio file needed) */
+const SFX={c:null,unlock(){try{this.c=this.c||new(window.AudioContext||window.webkitAudioContext)();if(this.c.state==='suspended')this.c.resume()}catch(e){}},
+  ok(){try{this.unlock();const c=this.c;if(!c)return;[[523.25,0],[659.25,.13],[783.99,.26],[1046.5,.4]].forEach(([f,t])=>{const o=c.createOscillator(),g=c.createGain(),s=c.currentTime+t;o.type='sine';o.frequency.value=f;o.connect(g);g.connect(c.destination);g.gain.setValueAtTime(0,s);g.gain.linearRampToValueAtTime(.22,s+.02);g.gain.exponentialRampToValueAtTime(.001,s+.6);o.start(s);o.stop(s+.65)});navigator.vibrate&&navigator.vibrate([50,40,50])}catch(e){}}};
