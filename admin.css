@@ -15,3 +15,5 @@
 .adm .items{margin:10px 0}.adm .it{padding:6px 0}.adm .it .th{width:46px;height:46px;border-radius:12px}.adm .addr{margin-top:10px;padding-top:10px;border-top:1px dashed var(--ln)}.adm .addr p{font-size:13px;color:var(--mut);margin:2px 0}
 .adm .chips.st{margin-bottom:6px}.adm .chips button{padding:8px 14px;font-size:12.5px}.adm .qp{display:flex;gap:8px;margin:8px 0}.adm .qp input{margin:0;padding:10px 12px;max-width:120px}
 .adm .ln{padding:3px 0;font-size:13px}.adm .tt{font-weight:700}.adm #oq{margin-bottom:12px}
+
+.adm .note.bad{background:color-mix(in srgb,var(--bad) 12%,var(--sf));border:1px solid var(--bad)}.adm #banner{padding:0 16px;max-width:980px}@media(min-width:900px){.adm #banner{margin-left:270px}}

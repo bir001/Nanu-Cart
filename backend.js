@@ -10,6 +10,6 @@ const ts=()=>firebase.firestore.FieldValue.serverTimestamp();
 if(BE.ready){
   BE.db.collection('products').onSnapshot(s=>{const l=s.docs.map(d=>({id:d.id,...d.data()})).filter(p=>p.active!==false);if(l.length)PRODUCTS=l;typeof softRefresh==='function'&&softRefresh()},e=>console.error(e));
   BE.auth.onAuthStateChanged(async u=>{ME=null;
-    if(u&&u.email&&u.email.endsWith('@nanucart.user')){const p=u.email.split('@')[0];let n='',a=null;try{const d=(await BE.db.doc('users/'+p).get()).data()||{};n=d.name||'';a=d.addr&&typeof d.addr==='object'?d.addr:null}catch(e){}ME={phone:p,name:n,addr:a}}
+    if(u&&u.email&&u.email.endsWith('@nanucart.user')){const p=u.email.split('@')[0];let n=u.displayName||'',a=null;try{const s=await BE.db.doc('users/'+p).get(),d=s.data()||{};n=d.name||n;a=d.addr&&typeof d.addr==='object'?d.addr:null;if(!s.exists&&n)BE.db.doc('users/'+p).set({name:n,phone:p,createdAt:ts()},{merge:true}).catch(()=>{})}catch(e){}ME={phone:p,name:n,addr:a}}
     typeof authChanged==='function'&&authChanged()});
 }

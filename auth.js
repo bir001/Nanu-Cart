@@ -11,7 +11,7 @@ async function doAuth(){
   if(!isPhone(p))return toast('Enter a valid 10-digit mobile number');
   if(w.length<6)return toast('Password must be at least 6 characters');
   try{
-    if(amode==='up'){await BE.auth.createUserWithEmailAndPassword(mail(p),w);await BE.db.doc('users/'+p).set({name:n,phone:p,createdAt:ts()},{merge:true});ME={phone:p,name:n}}
+    if(amode==='up'){const cr=await BE.auth.createUserWithEmailAndPassword(mail(p),w);await cr.user.updateProfile({displayName:n}).catch(()=>{});ME={phone:p,name:n,addr:null};try{await BE.db.doc('users/'+p).set({name:n,phone:p,createdAt:ts()},{merge:true})}catch(e){toast('Account created, but saving your profile failed ('+(e.code||'error')+'). Please contact support.')}}
     else await BE.auth.signInWithEmailAndPassword(mail(p),w);
     toast(amode==='up'?'Account created':'Logged in');location.hash=NEXT;NEXT='#account'
   }catch(e){toast(authErr(e))}
