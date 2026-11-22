@@ -9,7 +9,7 @@ const home=()=>{
   return `${ME?`<p class="hi">Welcome back, <b>${esc((ME.name||'').split(' ')[0]||'there')}</b></p>`:''}
   <div class="hslider" id="hs" onscroll="hsDot(this)">${sl.map(o=>`<div class="hs" ${o.img?`style="background-image:linear-gradient(100deg,#061552e6,#0B3BD680),url('${esc(o.img)}')"`:''}><small>${esc(o.k)}</small><h2>${esc(o.t)}</h2><p>${esc(o.s)}</p><div><a class="btn y" href="${esc(o.h)}">${esc(o.c)}</a></div></div>`).join('')}</div>
   <div class="dots" id="hd">${sl.map((_,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>
-  <div id="ao"></div>${installCard()}
+  <div id="ao"></div>${appCard()}
   <div class="trust3"><div>${I('pin',22)}Live order tracking</div><div>${I('chat',22)}Chat support</div><div>${I('shield',22)}Secure account</div></div>
   ${cats.length?`<div class="sh"><h2>Shop by category</h2></div><div class="chips">${cats.map(c=>`<button data-c="${esc(c)}" onclick="catSel=this.dataset.c;shown=8;go('products')">${esc(c)}</button>`).join('')}</div>`:''}
   ${deals.length?`<section class="deal"><small>${I('bolt',14)} Best deals</small><h3>Biggest savings right now</h3><div class="rail">${deals.map(card).join('')}</div></section>`:''}
