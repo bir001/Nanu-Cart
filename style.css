@@ -212,3 +212,10 @@ body.so{overflow:hidden}
 .sin input:focus-visible,.ofil input:focus-visible{outline:0}
 .sin input:focus,.ofil input:focus{border-color:var(--b)}
 .ofil input::-webkit-search-cancel-button,.sin input::-webkit-search-cancel-button{-webkit-appearance:none;display:none}
+
+/* ---- Login: show/hide password, Google button ---- */
+.pw{position:relative}.pw input{padding-right:54px}
+.eye{position:absolute;right:6px;top:5px;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;color:var(--mut);background:transparent}.eye:active{background:var(--bg2)}
+.or{display:flex;align-items:center;gap:12px;margin:18px 0 14px;color:var(--mut);font-size:12px;text-transform:uppercase;letter-spacing:.1em}.or:before,.or:after{content:"";flex:1;height:1px;background:var(--ln)}
+.gbtn{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--sf)}
+.btn.b.gbtn{background:var(--grad);color:var(--on)}.btn.b.gbtn svg{background:#fff;border-radius:50%;padding:3px;box-sizing:content-box}

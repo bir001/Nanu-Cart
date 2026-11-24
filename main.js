@@ -1,5 +1,5 @@
 /* ROUTER, NAV, DRAWER, BADGES, CART BAR */
-const pages={home,services,products,search,cart,wishlist,orders,track,account,chat,login,product,warranty,info,checkout,success};
+const pages={home,services,products,search,cart,wishlist,orders,track,account,chat,login,gapp,product,warranty,info,checkout,success};
 const guarded=['orders','track','account','chat','checkout','success'],inits={home:homeInit,products:productsInit,orders:ordersInit,chat:chatInit,track:trackInit,success:successInit};
 const nav=[['home','Home','home'],['products','Products','grid'],['search','','search'],['services','Services','tool'],['account','Account','user']];
 let AUTH_READY=!BE.ready,UN=[],CURR='home';
@@ -25,7 +25,7 @@ function refresh(){if(searchOpen()){SDIRTY=true;badges();const q=$('#q');q&&doSe
 function nativeBack(){if(closeSearch())return true;const s=$('#sheet'),d=$('#drawer');if((s&&s.classList.contains('open'))||(d&&d.classList.contains('open'))){closeAll();return true}return false}
 const softRefresh=()=>{if(['home','products','wishlist','product'].includes(CURR))refresh()};
 let splashDone=false;
-function doneSplash(){if(splashDone)return;splashDone=true;const s=$('#splash');if(!s)return;setTimeout(()=>{s.classList.add('out');setTimeout(()=>s.remove(),600)},Math.max(0,900-performance.now()))}
-const authChanged=()=>{AUTH_READY=true;refresh();doneSplash()};
+function doneSplash(){if(splashDone)return;splashDone=true;const s=$('#splash');if(!s)return;setTimeout(()=>{s.classList.add('out');setTimeout(()=>s.remove(),600)},Math.max(0,2700-performance.now()))}
+const authChanged=()=>{AUTH_READY=true;refresh();doneSplash();if(NEEDPHONE&&location.hash!=='#gapp')setTimeout(phoneSheet,2300)};
 addEventListener('hashchange',()=>{render();scrollTo(0,0)});render();
 if(AUTH_READY)doneSplash();setTimeout(doneSplash,4500);
